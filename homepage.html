@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Search - Find Local Restaurants and Favourite Food</title>
+    <meta name="description" content="Discover the best local restaurants and food with Food Search. Search for your favorite food and find famous restaurants.">
+    <meta name="keywords" content="food search, restaurants, food finder, restaurant search">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function searchFood() {
+            let input = document.getElementById("foodSearch").value.toLowerCase();
+            let result = document.getElementById("result");
+            let container = document.querySelector(".container");
+            let locations = {
+                "nasi lemak": [
+                    { name: "Nasi Lemak Burung Hantu", address: "19, Lorong Rahim Kajai 13, Taman Tun Dr Ismail, 60000 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur", image: "img/burung.jpg" },
+                    { name: "Nasi Lemak Bumbung", address: "6, Jalan 21/11b, Sea Park, 46300 Petaling Jaya, Selangor", image: "img/bumbung.jpg" },
+                    { name: "Nasi Lemak Amoi Teratai", address: "Jln Teratai 1/2, Taman Seraya, 56100 Ampang, Wilayah Persekutuan Kuala Lumpur", image: "img/amoi.jpg" }
+                ],
+                "pan mee": [
+                    { name: "One Shamelin Food Court", address: "2, Jalan 5/91a, Taman Shamelin Perkasa, 56100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur", image: "img/shemelin.jpg" },
+                    { name: "Restaurant Kin Kin", address: "No. 6, Jalan Perubatan 4, Taman, Pandan Indah, 55100 Kuala Lumpur, Wilayah Persekutuan", image: "img/kinkin.jpg" },
+                    { name: "Soon Soon Lai", address: "25, Jalan Teratai 1/2c, Taman Bukit Teratai, 68000 teratai, Selangor", image: "img/ssl.jpg" }
+                ],
+                "roti canai": [
+                    { name: "Al-Aqsa Bistro", address: "1G, Jalan Perdana 4/1, Pandan Perdana, 55300 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur", image: "img/ranjit1.jpg" },
+                    { name: "Rani's Corner", address: "Jalan Taman Saga, Taman Saga, 68000 Ampang, Selangor", image: "img/rani.jpg" },
+                    { name: "Nasi Kandar Sz", address: "1G, Jalan Perdana 4/8, Pandan Perdana, 55300 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur", image: "img/mamaksz.jpg" }
+                ]
+            };
+            
+            if (locations[input]) {
+                result.innerHTML = "";
+                locations[input].forEach(place => {
+                    result.innerHTML += `
+                        <div class="restaurant">
+                            <img src="${place.image}" alt="${place.name}" class="restaurant-img">
+                            <p><strong>${place.name}</strong></p>
+                            <p>${place.address}</p>
+                        </div>
+                    `;
+                });
+                container.classList.add("expanded"); 
+            } else {
+                result.innerHTML = "<p>Food not found.</p>";
+                container.classList.remove("expanded"); 
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>
+            <img src="img/logo.png" alt="Logo" class="logo"> Food Search
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <h2>Welcome to Food Search</h2>
+        <input type="text" id="foodSearch" placeholder="Search for food...">
+        <button onclick="searchFood()" class="btn">Search</button>
+        <div id="result"></div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Food Search. All rights reserved.</p>
+    </footer>
+</body>
+</html>
